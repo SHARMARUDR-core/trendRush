@@ -7,7 +7,7 @@ import SignIn from './auth/SignIn'
 export default function Home() {
   return (
     localStorage.getItem('userLogin') ? 
-    <div>
+    <div className='w-screen'>
       <Slider/>
       <Offers/>
       <TopBrands/>

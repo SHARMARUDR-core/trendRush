@@ -13,7 +13,7 @@ export default function ExploreAll() {
   }, []);
 
   return (
-    <div className="flex sm:w-96 w-screen h-screen p-10 gap-5 flex-wrap">
+    <div className="flex  w-screen h-screen p-10 gap-5 flex-wrap">
       {exploreData.map((ele , index) => (
         ele.company === company  ? 
         <ExploreCard
