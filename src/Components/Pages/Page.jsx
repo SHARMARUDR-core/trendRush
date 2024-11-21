@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 
 export default function Page() {
   let [itemData, setItemData] = useState({})
-  let [data, setData] = useState()
   let userID = localStorage.getItem('userID')
   console.log(userID)
 
@@ -20,10 +19,10 @@ export default function Page() {
   function handleWishlist() {
     fetch('https://ecommerce-psi-blond.vercel.app/wishlist', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' } ,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        user: userID ,
-        wishlistItems: data
+        user: userID,
+        wishlistItems: ItemData
       })
     })
   }
