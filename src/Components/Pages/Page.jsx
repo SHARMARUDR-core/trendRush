@@ -22,15 +22,17 @@ export default function Page() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         user: userID,
-        wishlistItems: ItemData
+        wishlistItems: itemData
       })
     })
   }
   async function fetchWishlist() {
     try {
       const response = await fetch(`https://ecommerce-psi-blond.vercel.app/wishlist/${userID}`).then(res => res.json())
-      console.log(`responsefromUpdatingUserWihlist ${JSON.stringify({ response })}`)
-      if (JSON.stringify({ response }) === null) { console.log('responsefromUpdatingUserWihlist null'); return null }
+      const check = response
+      console.log(`check ${check}`)
+      console.log(`responsefromUpdatingUserWihlist 1 ${check}`)
+      if (check === null) { console.log('responsefromUpdatingUserWihlist 2  null'); return null }
       else { return 'rudr' }
     } catch (error) {
       console.error('An error occurred:', error);
@@ -150,7 +152,7 @@ export default function Page() {
       localStorage.setItem("orderArray", JSON.stringify(storedArrayToUpdate));
     }
   }
-  
+
   return (
     <div className='w-screen sm:flex justify-center items-center flex-col p-3'>
 
@@ -165,7 +167,7 @@ export default function Page() {
           <button className='w-60 h-16 ring-2 rounded-xl flex justify-center text-xl items-center gap-2 active:bg-slate-300'
             onClick={updateWishlistItem}> <CiHeart />Wishlist </button>
           <button className='w-60 h-16 ring-2 gap-2 bg-red-500 rounded-xl text-white flex justify-center items-center
-            active:bg-red-700' onClick={handleOrderArray}> <IoBagOutline className='text-xl'/>Add to Bag</button>
+            active:bg-red-700' onClick={handleOrderArray}> <IoBagOutline className='text-xl' />Add to Bag</button>
         </div>
       </div>
 
