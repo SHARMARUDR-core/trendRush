@@ -3,9 +3,9 @@ import React, { createContext, useState } from 'react';
 export const MyContext = createContext(null);
 
 export const MyProvider = ({ children }) => {
-  const [login, setLogin] = useState('login');
+  const [orderItem , setOrderItem] = useState('jai hind');
   return (
-    <MyContext.Provider value={{ login, setLogin }}>
+    <MyContext.Provider value={{ orderItem , setOrderItem }}>
       {children}
     </MyContext.Provider>
   );

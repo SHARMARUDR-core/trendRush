@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CiHeart } from "react-icons/ci";
 import { IoBagOutline } from "react-icons/io5";
 import { useParams } from 'react-router-dom';
@@ -74,68 +74,83 @@ export default function Page() {
   }
 
 
-  async function handleCart() {
-    console.log(`userID and itemData in handle cart`)
-    await fetch(`https://ecommerce-psi-blond.vercel.app/cart`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        user: userID,
-        cartItem: itemData
-      })
-    })
-  }
+  // async function handleCart() {
+  //   console.log(`userID and itemData in handle cart`)
+  //   await fetch(`https://ecommerce-psi-blond.vercel.app/cart`, {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({
+  //       user: userID,
+  //       cartItem: itemData
+  //     })
+  //   })
+  // }
 
-  async function fetchCart() {
-    try {
-      const response = await fetch(`https://ecommerce-psi-blond.vercel.app/cart/${userID}`).then(res => res.json())
-      console.log(`responsefromUpdatingUserCart ${JSON.stringify({ response })}`)
-      if (JSON.stringify({ response }) === null) { console.log('responsefromUpdatingUserCart null'); return null }
-      else { return 'rudr' }
-    } catch (error) {
-      console.error('An error occurred:', error);
-      handleCart();
-      return
+  // async function fetchCart() {
+  //   try {
+  //     const response = await fetch(`https://ecommerce-psi-blond.vercel.app/cart/${userID}`).then(res => res.json())
+  //     console.log(`responsefromUpdatingUserCart ${JSON.stringify({ response })}`)
+  //     if (JSON.stringify({ response }) === null) { console.log('responsefromUpdatingUserCart null'); return null }
+  //     else { return 'rudr' }
+  //   } catch (error) {
+  //     console.error('An error occurred:', error);
+  //     handleCart();
+  //     return
+  //   }
+  // }
+
+  // async function updateCartItem() {
+  //   try {
+  //     const checkUserExistsInCart = await fetchCart();
+  //     console.log(`checkUserExistsInCart: ${JSON.stringify(checkUserExistsInCart)}`);
+
+  //     if (!JSON.stringify(checkUserExistsInCart)) {
+  //       console.log('User does not exist in wishlist. Creating a new one...');
+  //       handleCart();
+  //       return
+  //     }
+
+  //     else {
+  //       console.log('Updating cart items...');
+  //       console.log(userID)
+  //       console.log(itemData)
+  //       const response = await fetch(`https://ecommerce-psi-blond.vercel.app/cart/${userID}`, {
+  //         method: 'PUT',
+  //         headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify({
+  //           user: userID,
+  //           cartItem: { Item: itemData, quantity: 1 },
+  //         }),
+  //       });
+
+  //       if (response.ok) {
+  //         console.log('Wishlist updated successfully.');
+  //       } else {
+  //         console.error('Failed to update wishlist:', response.statusText);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error('Error in updating wishlist:', error);
+  //   }
+  // }
+
+
+  function handleOrderArray() {
+    // Check if 'orderArray' already exists in localStorage
+    if (!localStorage.getItem('orderArray')) {
+      localStorage.setItem("orderArray", JSON.stringify([itemData]));
+      return;
+    }
+    else {
+      const storedArrayToUpdate = JSON.parse(localStorage.getItem("orderArray")) || [];
+      // Add a new item to the array
+      storedArrayToUpdate.push(itemData);
+
+      // Save the updated array back to localStorage
+      localStorage.setItem("orderArray", JSON.stringify(storedArrayToUpdate));
     }
   }
-
-  async function updateCartItem() {
-    try {
-      const checkUserExistsInCart = await fetchCart();
-      console.log(`checkUserExistsInCart: ${JSON.stringify(checkUserExistsInCart)}`);
-
-      if (!JSON.stringify(checkUserExistsInCart)) {
-        console.log('User does not exist in wishlist. Creating a new one...');
-        handleCart();
-        return
-      }
-
-      else {
-        console.log('Updating cart items...');
-        console.log(userID)
-        console.log(itemData)
-        const response = await fetch(`https://ecommerce-psi-blond.vercel.app/cart/${userID}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            user: userID,
-            cartItem: { Item: itemData, quantity: 1 },
-          }),
-        });
-
-        if (response.ok) {
-          console.log('Wishlist updated successfully.');
-        } else {
-          console.error('Failed to update wishlist:', response.statusText);
-        }
-      }
-    } catch (error) {
-      console.error('Error in updating wishlist:', error);
-    }
-  }
-
-
-
+  
   return (
     <div className='w-screen sm:flex justify-center items-center flex-col p-3'>
 
@@ -150,7 +165,7 @@ export default function Page() {
           <button className='w-60 h-16 ring-2 rounded-xl flex justify-center text-xl items-center gap-2 active:bg-slate-300'
             onClick={updateWishlistItem}> <CiHeart />Wishlist </button>
           <button className='w-60 h-16 ring-2 gap-2 bg-red-500 rounded-xl text-white flex justify-center items-center
-                active:bg-red-700' onClick={updateCartItem}> <IoBagOutline className='text-xl' />Add to Bag</button>
+            active:bg-red-700' onClick={handleOrderArray}> <IoBagOutline className='text-xl'/>Add to Bag</button>
         </div>
       </div>
 

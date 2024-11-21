@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 
 export default function ExploreCard({ url, exploreDataItem, company, price, subCategory }) {
   let navigate = useNavigate()
+  console.log(`exploreDataItem ${exploreDataItem}`)
   let [mouseOver, setMouseOver] = useState(false)
   let userID = localStorage.getItem('userID')
 
@@ -21,7 +22,7 @@ export default function ExploreCard({ url, exploreDataItem, company, price, subC
   }, [])
 
   async function handleWishlist() {
-    await fetch('https://ecommerce-bbo6.onrender.com/wishlist', {
+    await fetch(`https://ecommerce-bbo6.onrender.com/wishlist`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

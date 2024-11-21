@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import EmptyCart from './EmptyCart'
 import CartBody from './CartBody'
 export default function Cart() {
-  let [data , setData] = useState(['sahil' , 'rudr' , 'nikita'])
+  let data = localStorage.getItem('orderArray')
+  const storedArray = JSON.parse(data);
+
   return (
-    data.length ? <CartBody /> : <EmptyCart />
+    storedArray.length === 0 ? <EmptyCart /> : <CartBody />
   )
 }

@@ -17,6 +17,7 @@ export default function Explore() {
       {exploreData.map((ele) => (
         ele.subCategory === subCategory  ? 
         <ExploreCard
+        exploreDataItem = {ele}
           key={ele._id}
           url={ele.url}
           company={ele.company}

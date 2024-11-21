@@ -17,6 +17,8 @@ import OtpTaker from './Components/auth/OtpTaker.jsx';
 import Inbox from './Components/messages/Inbox.jsx';
 import OrderSuccess from './Components/checkout/OrderSuccess.jsx';
 import CheckoutPage from './Components/checkout/CheckoutPage .jsx';
+import { MyProvider } from './Components/Context-api'
+
 import './index.css'
 
 const router = createBrowserRouter([
@@ -87,6 +89,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <MyProvider>
+        <RouterProvider router={router} />
+    </MyProvider>
   </StrictMode>,
 )
