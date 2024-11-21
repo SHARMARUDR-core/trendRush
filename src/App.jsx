@@ -8,7 +8,8 @@ function App() {
   return (
     <>
     <MyProvider>
-      {location.pathname !== '/admin' && location.pathname !== '/Inbox' &&  location.pathname !== '/orderSuccess' && <Header />}
+      {location.pathname !== '/admin' && location.pathname !== '/Inbox' &&  
+      location.pathname !== '/orderSuccess' && <Header />}
       <Outlet />
     </MyProvider>
     </>

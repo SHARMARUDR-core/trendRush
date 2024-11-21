@@ -21,7 +21,7 @@ export default function ExploreCard({ url, exploreDataItem, company, price, subC
   }, [])
 
   async function handleWishlist() {
-    await fetch('http://localhost:8080/wishlist', {
+    await fetch('https://ecommerce-bbo6.onrender.com/wishlist', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -33,7 +33,7 @@ export default function ExploreCard({ url, exploreDataItem, company, price, subC
 
   async function fetchWishlist() {
     try {
-      const response = await fetch(`http://localhost:8080/wishlist/${userID}`).then(res => res.json())
+      const response = await fetch(`https://ecommerce-bbo6.onrender.com/wishlist/${userID}`).then(res => res.json())
       console.log(`responsefromUpdatingUserWihlist ${JSON.stringify({ response })}`)
       if (JSON.stringify({ response }) === null) { console.log('responsefromUpdatingUserWihlist null'); return null }
       else { return 'rudr' }
@@ -58,7 +58,7 @@ export default function ExploreCard({ url, exploreDataItem, company, price, subC
       else {
         console.log('Updating wishlist items...');
         console.log(userID)
-        const response = await fetch(`http://localhost:8080/wishlist/${userID}`, {
+        const response = await fetch(`https://ecommerce-bbo6.onrender.com/wishlist/${userID}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
