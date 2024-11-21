@@ -15,10 +15,10 @@ import Explore from './Components/Explore.jsx';
 import ExploreAll from './Components/ExploreAll.jsx';
 import OtpTaker from './Components/auth/OtpTaker.jsx';
 import Inbox from './Components/messages/Inbox.jsx';
-
-import './index.css'
-import CheckoutPage from './Components/checkout/CheckoutPage .jsx';
 import OrderSuccess from './Components/checkout/OrderSuccess.jsx';
+import CheckoutPage from './Components/checkout/CheckoutPage .jsx';
+import './index.css'
+
 const router = createBrowserRouter([
   {
     path: "/",
