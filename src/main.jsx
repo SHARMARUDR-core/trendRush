@@ -7,7 +7,7 @@ import SignIn from './Components/auth/SignIn.jsx';
 import Login from './Components/auth/Login.jsx';
 import Home from './Components/Home.jsx';
 import Admin from './Components/admin/AdminUpdatePortal.jsx'
-import Page from './Components/Pages/page.jsx';
+import Page from './Components/Pages/Page.jsx';
 import Wishlist from './Components/wishlist/Wishlist.jsx';
 import Cart from './Components/cart/Cart.jsx';
 import Contact from './Components/contact/Contact.jsx';
